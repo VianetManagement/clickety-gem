@@ -28,7 +28,7 @@ class ClicketyApiController < ApplicationController
     if completed_goals.blank? || completed_goals.present? && !completed_goals.include?(goal)
       track_params = {completion: true, completion_goal_id: goal}
       track_params[:user_id] = user_id unless user_id.blank?
-      result = Api.track_user(track_params)
+      result = ClicketyApi.track_user(track_params)
       if result[:response].present?
         response = JSON.parse(result[:response])
         if response["success"].present? && response["success"]["user_id"].present? && user_id != response["success"]["user_id"]

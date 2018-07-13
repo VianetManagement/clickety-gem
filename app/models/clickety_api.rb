@@ -2,7 +2,7 @@ require 'uri'
 require 'net/http'
 require 'json'
 
-class Api < ActiveRecord::Base
+class ClicketyApi < ActiveRecord::Base
   ef self.track_user(*args)
     errors = ''
     response = {}
