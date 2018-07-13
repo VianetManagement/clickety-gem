@@ -5,7 +5,11 @@ class ClicketyApiController < ApplicationController
       goals = {}
       ENV['CLICKETY_GOALS'].split(",").each {|g| pair = g.split(":"); goals[pair[0]] = pair[1]; }
       if goals.keys.include?(params[:goal])
-        response = track(params[:goal])
+        if params[:user_id].present?
+          response = track(params[:goal], params[:user_id])
+        else
+          response = track(params[:goal])
+        end
       else
         response["errors"] = "Error - goal is invalid."
       end
@@ -17,13 +21,13 @@ class ClicketyApiController < ApplicationController
   end
 
   private
-  def track(event)
+  def track(event, user_id = nil)
     response = {}
     goals = {}
     domain = ENV['CLICKETY_COOKIE_DOMAIN'].present? ? ENV['CLICKETY_COOKIE_DOMAIN'] : request.host_with_port
     ENV['CLICKETY_GOALS'].split(",").each {|g| pair = g.split(":"); goals[pair[0]] = pair[1]; }
     goal = goals[event]
-    user_id = cookies.encrypted[:clickety_user_id]
+    user_id = cookies.encrypted[:clickety_user_id] unless user_id.present?
     completed_goals = cookies.encrypted[:goals]
     if completed_goals.blank? || completed_goals.present? && !completed_goals.include?(goal)
       track_params = {completion: true, completion_goal_id: goal}
