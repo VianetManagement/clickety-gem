@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 
 class ClicketyApi < ActiveRecord::Base
-  ef self.track_user(*args)
+  def self.track_user(*args)
     errors = ''
     response = {}
     if args[0].nil? || !args[0].nil? && !args[0].is_a?(Hash)
