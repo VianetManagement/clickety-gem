@@ -22,6 +22,7 @@ To call a client-side goal
 $('.element-class').click(function() {
 	$.post("<%= url_for clickety_goal_path(goal: 'goal_name') %>");
 });
+```
 
 On the server side, to account for an ad click
 ```ruby
