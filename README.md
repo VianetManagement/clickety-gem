@@ -46,6 +46,107 @@ On the server side, to account for an ad click
   end
 ```
 
+Conversion:
+
+- Retrieve user ID, if one exists:
+```
+user_id = cookies.signed[:clickety_user_id]
+```
+- If user ID is present or user = true:
+  - Call clickety method with appropriate parameters: 
+  ```
+  Clickety.track_user({user_id: ’1234’, conversion_amount: ’19.99’})
+  ```
+
+Completion
+
+- Retrieve user ID, if one exists:
+```
+user_id = cookies.signed[:clickety_user_id]
+```
+- Check for completion_goal_id in cookie
+  - If completion_goal_id is not in cookie, call clickety method with appropriate parameters:
+  ```
+  Clickety.track_user({user_id: ’1234’, completion: true, completion_goal_id: ’696969’})
+  ```
+  - Record completion_goal_id in cookie
+
+Completion and conversion
+
+- Retrieve user ID, if one exists: user_id = cookies.signed[:clickety_user_id]
+- Check for completion_goal_id in cookie.
+  - completion_goal_id is not present in cookie
+    - Add completion and completion_goal_id to Clickety call
+    - Save completion_goal_id to cookie
+- Set appropriate parameters: 
+```
+function_args = {user_id: user_id, completion: true, completion_goal_id: ’696969’, conversion: true, conversion_amount: ’19.99’}
+```
+- Send data to clickety: 
+```
+result = Clickety.track_user(function_args)
+```
+
+Update a user’s ID
+
+```
+Clickety.update_user({user_id: 'old_id', user_data: {user_id: 'new_id'}})
+```
+
+Update a user’s campaign ID
+
+```
+Clickety.update_user({user_id: 'user_id', campaign_id: 'campaign_id'})
+```
+
+Conversion:
+
+- Retrieve user ID, if one exists: 
+```
+user_id = cookies.signed[:clickety_user_id]
+```
+- If user ID is present or user = true:
+  - Call clickety method with appropriate parameters: 
+  ```
+  Clickety.track_user({user_id: ’1234’, conversion_amount: ’19.99’})
+  ```
+
+Completion
+
+- Retrieve user ID, if one exists: user_id = cookies.signed[:clickety_user_id]
+- Check for completion_goal_id in cookie
+  - If completion_goal_id is not in cookie, call clickety method with appropriate parameters:
+  ```
+  Clickety.track_user({user_id: ’1234’, completion: true, completion_goal_id: ’696969’})
+  ```
+  - Record completion_goal_id in cookie
+
+Completion and conversion
+
+- Retrieve user ID, if one exists: user_id = cookies.signed[:clickety_user_id]
+- Check for completion_goal_id in cookie.
+  - completion_goal_id is not present in cookie
+    - Add completion and completion_goal_id to Clickety call
+    - Save completion_goal_id to cookie
+- Set appropriate parameters: 
+```
+function_args = {user_id: user_id, completion: true, completion_goal_id: ’696969’, conversion: true, conversion_amount: ’19.99’}
+```
+- Send data to clickety: 
+```
+result = Clickety.track_user(function_args)
+```
+
+Update a user’s ID
+```
+Clickety.update_user({user_id: 'old_id', user_data: {user_id: 'new_id'}})
+```
+
+Update a user’s campaign ID
+```
+Clickety.update_user({user_id: 'user_id', campaign_id: 'campaign_id'})
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 
