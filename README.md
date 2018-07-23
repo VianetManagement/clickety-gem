@@ -12,6 +12,11 @@ For client side goals, specify a route
 mount Clickety::Engine, at: "/api/clickety"
 ```
 
+Set Clickety API key in an environment variable:
+```
+CLICKETY_API_KEY=TEgsBMGyZCck1eTi9YvoukddgWdAwrHj
+```
+
 Set goals in an environment variable:
 ```
 CLICKETY_GOALS=goal_name:JwbLyiUC5ohuSv6xonNE
