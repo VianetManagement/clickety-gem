@@ -81,7 +81,13 @@ Completion and conversion
     - Save completion_goal_id to cookie
 - Set appropriate parameters: 
 ```
-function_args = {user_id: user_id, completion: true, completion_goal_id: ’696969’, conversion: true, conversion_amount: ’19.99’}
+function_args = {
+	user_id: user_id, 
+	completion: true, 
+	completion_goal_id: ’696969’, 
+	conversion: true, 
+	conversion_amount: ’19.99’
+}
 ```
 - Send data to clickety: 
 ```
@@ -131,7 +137,13 @@ Completion and conversion
     - Save completion_goal_id to cookie
 - Set appropriate parameters: 
 ```
-function_args = {user_id: user_id, completion: true, completion_goal_id: ’696969’, conversion: true, conversion_amount: ’19.99’}
+function_args = {
+	user_id: user_id, 
+	completion: true, 
+	completion_goal_id: ’696969’, 
+	conversion: true, 
+	conversion_amount: ’19.99’
+}
 ```
 - Send data to clickety: 
 ```
