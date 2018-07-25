@@ -45,7 +45,7 @@ On the server side, to account for an ad click
       }
 
       if params[:adv_id].present?
-        map = LandingPage.ad_id_map.select {|k| k[:adv_id] == params[:adv_id] }.first
+        map = LandingPage.ad_id_map.select {|k| k[:adv_id] == params[:adv_id].to_i }.first
         if map.present?
           clickety_data[:campaign_id] = map[:campaign_id]
         else
@@ -60,7 +60,13 @@ On the server side, to account for an ad click
       clickety_data[:user_id] = user_id if user_id.present?
       clickety_data[:keywords] = params[:keywords] if params[:keywords].present?
 
-      ClicketyApi.track_user(clickety_data)
+      response = ClicketyApi.track_user(clickety_data)
+      Rails.logger.info "Response from Clickety API:"
+      Rails.logger.info response.inspect
+      js = JSON.parse(response[:response])
+      if js["sucess"].present? && js["success"].is_a?(Hash) && js["success"]["user_id"].present?
+        cookies.signed[:user_id] = {value: js["success"]["user_id"], domain: 'roommates.com'}
+      end
     end
   end
 ```
