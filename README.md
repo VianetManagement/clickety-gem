@@ -80,7 +80,7 @@ user_id = cookies.signed[:clickety_user_id]
 - If user ID is present or user = true:
   - Call clickety method with appropriate parameters: 
   ```
-  Clickety.track_user({user_id: ’1234’, conversion_amount: ’19.99’})
+  ClicketyApi.track_user({user_id: ’1234’, conversion_amount: ’19.99’})
   ```
 
 Completion
@@ -92,7 +92,7 @@ user_id = cookies.signed[:clickety_user_id]
 - Check for completion_goal_id in cookie
   - If completion_goal_id is not in cookie, call clickety method with appropriate parameters:
   ```
-  Clickety.track_user({user_id: ’1234’, completion: true, completion_goal_id: ’696969’})
+  ClicketyApi.track_user({user_id: ’1234’, completion: true, completion_goal_id: ’696969’})
   ```
   - Record completion_goal_id in cookie
 
@@ -115,7 +115,7 @@ function_args = {
 ```
 - Send data to clickety: 
 ```
-result = Clickety.track_user(function_args)
+result = ClicketyApi.track_user(function_args)
 ```
 
 Update a user’s ID
@@ -139,7 +139,7 @@ user_id = cookies.signed[:clickety_user_id]
 - If user ID is present or user = true:
   - Call clickety method with appropriate parameters: 
   ```
-  Clickety.track_user({user_id: ’1234’, conversion_amount: ’19.99’})
+  ClicketyApi.track_user({user_id: ’1234’, conversion_amount: ’19.99’})
   ```
 
 Completion
@@ -148,7 +148,7 @@ Completion
 - Check for completion_goal_id in cookie
   - If completion_goal_id is not in cookie, call clickety method with appropriate parameters:
   ```
-  Clickety.track_user({user_id: ’1234’, completion: true, completion_goal_id: ’696969’})
+  ClicketyApi.track_user({user_id: ’1234’, completion: true, completion_goal_id: ’696969’})
   ```
   - Record completion_goal_id in cookie
 
@@ -171,7 +171,7 @@ function_args = {
 ```
 - Send data to clickety: 
 ```
-result = Clickety.track_user(function_args)
+result = ClicketyApi.track_user(function_args)
 ```
 
 Update a user’s ID
