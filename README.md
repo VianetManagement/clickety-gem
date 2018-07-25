@@ -32,22 +32,35 @@ $('.element-class').click(function() {
 On the server side, to account for an ad click
 ```ruby
   def track_ad
-    if params[:ad_name].present?
+    if params[:adv_id].present? || params[:campaign_id].present?
+      campaign_id = nil
+      user_id = cookies.signed[:clickety_user_id]
+
       clickety_data = {
         ip_address: request.remote_ip,
         user_agent: request.user_agent,
         user: true,
         visit: true,
         replace: true,
-        ad_name: params[:ad_name]
       }
 
-      clickety_data[:campaign_id] = params[:campaign_id] if params[:campaign_id].present?
+      if params[:adv_id].present?
+        map = LandingPage.ad_id_map.select {|k| k[:adv_id] == params[:adv_id] }.first
+        if map.present?
+          clickety_data[:campaign_id] = map[:campaign_id]
+        else
+          Rails.logger.error "Error - couldn't find campaign ID for adv ID: #{params[:adv_id]}"
+        end
+      end
+
+      clickety_data[:ad_name] = params[:ad_name] if params[:ad_name].present?
+
+      clickety_data[:campaign_id] = params[:campaign_id] if params[:campaign_id].present? && campaign_id.blank?
       clickety_data[:ad_group_name] = params[:ad_group_name] if params[:ad_group_name].present?
       clickety_data[:user_id] = user_id if user_id.present?
       clickety_data[:keywords] = params[:keywords] if params[:keywords].present?
 
-      Clickety.track_user(clickety_data)
+      ClicketyApi.track_user(clickety_data)
     end
   end
 ```
