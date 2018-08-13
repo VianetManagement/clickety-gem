@@ -53,12 +53,15 @@ On the server side, to account for an ad click
         end
       end
 
-      clickety_data[:ad_name] = params[:ad_name] if params[:ad_name].present?
+      user_data = {}
+      user_data[:ad_name] = params[:ad_name] if params[:ad_name].present?
+      user_data[:campaign_id] = params[:campaign_id] if params[:campaign_id].present? && campaign_id.blank?
+      user_data[:ad_group_name] = params[:ad_group_name] if params[:ad_group_name].present?
+      user_data[:user_id] = user_id if user_id.present?
+      user_data[:keywords] = params[:keywords] if params[:keywords].present?
+      user_data[:tags] = params[:tags] if params[:tags].present?
 
-      clickety_data[:campaign_id] = params[:campaign_id] if params[:campaign_id].present? && campaign_id.blank?
-      clickety_data[:ad_group_name] = params[:ad_group_name] if params[:ad_group_name].present?
-      clickety_data[:user_id] = user_id if user_id.present?
-      clickety_data[:keywords] = params[:keywords] if params[:keywords].present?
+      clickety_data[:user_data] = user_data
 
       response = ClicketyApi.track_user(clickety_data)
       Rails.logger.info "Response from Clickety API:"
