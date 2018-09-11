@@ -189,6 +189,11 @@ Update a user’s campaign ID
 Clickety.update_user({user_id: 'user_id', campaign_id: 'campaign_id'})
 ```
 
+Expire a user
+```
+Clickety.update_user({user_id: 'user_id', user_data: { expire_days: '0' }})
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 
