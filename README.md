@@ -123,6 +123,8 @@ function_args = {
 result = ClicketyApi.track_user(function_args)
 ```
 
+!!! Only the use update_user() method to update a user's ID or user's campaign ID !!!
+
 Update a user’s ID
 
 ```
