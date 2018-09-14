@@ -52,14 +52,8 @@ class ClicketyApi < ActiveRecord::Base
 
     unless args.nil? || !args.is_a?(Array)
       args.first.each do |k, v|
-        if v.is_a?(Hash)
-          v.each do |v_k, v_v|
-            p[:user_data][v_k] = v_v
-          end
-        else
-          p[:user_data][k] = v if user_data_keys.include?(k)
-          p[k] = v unless user_data_keys.include?(k)
-        end
+        p[:user_data][k] = v if user_data_keys.include?(k)
+        p[k] = v unless user_data_keys.include?(k)
       end
     end
 
