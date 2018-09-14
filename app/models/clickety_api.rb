@@ -18,6 +18,21 @@ class ClicketyApi < ActiveRecord::Base
     { response: response, errors: errors }
   end
 
+  def self.track_referer(*args)
+    errors = ''
+    response = {}
+    if args[0].nil? || !args[0].nil? && !args[0].is_a?(Hash)
+      errors += 'Error - no arguments were received.'
+    elsif !args[0].nil? && args[0].key?(:user_agent) && args[0][:user_agent].downcase.include?('bot/')
+      errors += 'Error - this user is a bot.'
+    else
+      data = make_object(args)
+      response, errors = send_request('referer', data)
+    end
+
+    { response: response, errors: errors }
+  end
+
   def self.update_user(*args)
     errors = ''
     response = {}
@@ -60,12 +75,16 @@ class ClicketyApi < ActiveRecord::Base
       errors  += 'Error - API key not found. Please set it in the environment as CLICKETY_API_KEY.'
     else
       uri = URI('https://api.clickety.com/v1/track')
+
+      if type == 'referer'
+        uri = URI('https://api.clickety.com/v1/referer')
+      end
       content = { 'Content-Type' => 'application/json' }
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
-      request = Net::HTTP::Post.new(uri, content) if type == 'track'
+      request = Net::HTTP::Post.new(uri, content) if (type == 'track' || type == 'referer')
       request = Net::HTTP::Put.new(uri, content) if type == 'update'
       request['x-api-key'] = api_key
       request.body = request_params.to_json
