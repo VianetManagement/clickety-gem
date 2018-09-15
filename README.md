@@ -4,7 +4,7 @@ Short description and motivation.
 ## Usage
 First, include the gem in your gemfile
 ```ruby
-gem 'clickety', git: 'https://github.com/thoughtbot/paperclip.git'
+gem 'clickety', git: 'https://github.com/VianetManagement/clickety-gem.git'
 ```
 
 For client side goals, specify a route
