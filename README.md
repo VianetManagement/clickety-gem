@@ -9,7 +9,7 @@ gem 'clickety', git: 'https://github.com/VianetManagement/clickety-gem.git'
 
 For client side goals, specify a route
 ```ruby
-mount Clickety::Engine, at: "/api/clickety"
+mount Clickety::Engine, at: "/clickety/events"
 ```
 
 Set Clickety API key in an environment variable:

@@ -1,4 +1,4 @@
-require "clickety/engine"
+require 'clickety/engine'
 
 module Clickety
   # Your code goes here...
