@@ -28,6 +28,7 @@ class ClicketyApiController < ApplicationController
       format.all { render json: response.to_json and return }
     end
   end
+  helper_method :submmit_clickety_goal
 
   private
   def track(event, user_id = nil)
