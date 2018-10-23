@@ -8,7 +8,7 @@ class ClicketyApi < ActiveRecord::Base
     response = {}
     if args[0].nil? || !args[0].nil? && !args[0].is_a?(Hash)
       errors += 'Error - no arguments were received.'
-    elsif !args[0].nil? && args[0].key?(:user_agent) && args[0][:user_agent].downcase.include?('bot/')
+    elsif !args[0].nil? && args[0].key?(:user_agent) && (args[0][:user_agent].nil? || !args[0][:user_agent].nil? && args[0][:user_agent].downcase.include?('bot/'))
       errors += 'Error - this user is a bot.'
     else
       data = make_object(args)
