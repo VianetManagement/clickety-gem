@@ -128,13 +128,13 @@ result = ClicketyApi.track_user(function_args)
 Update a user’s ID
 
 ```
-Clickety.update_user({user_id: 'old_id', user_data: {user_id: 'new_id'}})
+ClicketyApi.update_user({user_id: 'old_id', user_data: {user_id: 'new_id'}})
 ```
 
 Update a user’s campaign ID
 
 ```
-Clickety.update_user({user_id: 'user_id', campaign_id: 'campaign_id'})
+ClicketyApi.update_user({user_id: 'user_id', campaign_id: 'campaign_id'})
 ```
 
 Conversion:
@@ -183,17 +183,17 @@ result = ClicketyApi.track_user(function_args)
 
 Update a user’s ID
 ```
-Clickety.update_user({user_id: 'old_id', user_data: {user_id: 'new_id'}})
+ClicketyApi.update_user({user_id: 'old_id', user_data: {user_id: 'new_id'}})
 ```
 
 Update a user’s campaign ID
 ```
-Clickety.update_user({user_id: 'user_id', campaign_id: 'campaign_id'})
+ClicketyApi.update_user({user_id: 'user_id', campaign_id: 'campaign_id'})
 ```
 
 Expire a user
 ```
-Clickety.update_user({user_id: 'user_id', user_data: { expire_days: '0' }})
+ClicketyApi.update_user({user_id: 'user_id', user_data: { expire_days: '0' }})
 ```
 
 ## Installation
